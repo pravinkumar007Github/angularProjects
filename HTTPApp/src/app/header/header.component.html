@@ -1,0 +1,37 @@
+<header>
+    
+        <div class="row">
+            <div class="col-sm-12 headerstyles">
+                <div class="row">
+                   <div class="col-sm-1">
+                   <img src = "../../assets/img/http.png" style="height:72px" >
+                
+                   </div>
+                   <div class="col-sm-3" >
+                    <span style="font-size: -webkit-xxx-large;"> Http App</span> 
+                   </div>
+                   <ng-container *ngIf="usrServ.isLoggedIn() else Msg">
+                    <div class="col-sm-5" style="margin-top: 23px;font-size: x-large;">Welcome:{{usrServ.getUserName()}}</div>
+                   </ng-container>
+                   <ng-template #Msg>
+                       <div class="col-sm-5"></div>
+                   </ng-template>
+                   <div class="col-sm-3" style="margin-top: 15px;" *ngIf="!usrServ.isLoggedIn()">
+                       <button type="menu" class="btn-primary" (click)="Login()">Try to Login</button>
+                   </div>
+
+                   <div class="col-sm-3" style="margin-top: 22px;" *ngIf="usrServ.isLoggedIn()">
+                    <button type="menu" class="btn-primary" (click)="weather()">Weather</button> &nbsp;
+                    <button type="menu" class="btn-primary" (click)="news()">News</button> &nbsp;
+                    <button type="menu" class="btn-primary" (click)="Logout()">Log Out</button>
+                    <!-- <label style="font-size: xx-large;" (click)="Logout()">Logout</label> -->
+                </div>
+                 
+                </div>
+                
+            </div>
+        </div>
+       
+    
+    
+</header>

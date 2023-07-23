@@ -1,0 +1,27 @@
+<div class="container">
+    <h1>In active Products</h1>
+
+    <ul>
+        <ng-container *ngIf = "inactive_productive_list.length > 0 else msg">
+
+            <div class="row" *ngFor = "let inactiveprod of inactive_productive_list; let index = index">
+                <div class="col-sm-1">
+                    <li>{{inactiveprod}}</li>
+                </div>
+                <div class="col-sm-1">
+                    <button type="button" class="btn-primary" (click) = "movetoactive(index,inactiveprod)">Move</button> 
+                </div>
+        </div>
+      
+         </ng-container>
+         <ng-template #msg>
+            <div class="row">
+                <div class="col-sm-3">
+                    <p class="alert alert-danger" role="alert">No Inactive Products</p>
+                </div>
+            </div>
+        </ng-template>
+    </ul>
+  
+</div>
+

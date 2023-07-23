@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row news_style">
+        <div class="col-sm-12" style="text-align: center;">
+            <h1>News</h1>
+        </div>
+    </div>
+    <br>
+    <div class="row news_details">
+        <br>
+        <div class="row" style="text-align: center;">
+            Catagory
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <select class="form-control" #ddlvalue (change)="ddlchange(ddlvalue.value)">
+                    <option value="--Select--">--Select--</option>
+                    <option value="All">All</option>
+                    <option value="business">Business</option>
+                    <option value="politics">Politics</option>
+                    <option value="science">Science</option>
+                    <option value="sports">Sports</option>
+                </select>
+            </div>
+        </div>
+
+
+    </div>
+    <br><br>
+    <ng-container *ngIf="is_newsDetails">
+        <div class="col-md-3" *ngFor="let newsdetails of news_Details_data">
+                <div class="snipcart-item block">
+                    <div class="snipcart-thumb">
+                        <img src="{{newsdetails.urlToImage}}" alt=" " class="img-responsive" />
+                        <p>{{newsdetails.title}}</p>
+                        <h4>{{newsdetails.description | slice:0:100}}</h4>
+                    </div>
+                    <div class="snipcart-details">
+                        <a href="{{newsdetails.url}}" target="blank" class="btn btn-success">Read More</a>
+                    </div>
+                </div>
+            <br>
+        </div>
+    </ng-container>
+
+</div>

@@ -1,0 +1,21 @@
+.HomePage
+{
+    background-color: #9b9bda;
+    color: white;
+}
+.About
+{
+    background-color: #fff892;
+    color: rgb(22, 20, 20);
+}
+.contact
+{
+    background-color: #f88c79;
+    color: rgb(22, 20, 20);
+}
+.property
+{
+    height: 128px;
+    width: 500px;
+    
+}

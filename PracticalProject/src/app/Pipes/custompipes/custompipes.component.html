@@ -1,0 +1,113 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3"></div>
+        <div class="col-sm-6">
+            <h1>Custom Pipes</h1>
+            <div class="form-group">
+                <label>Select Catagory</label>
+                <select class="form-control" [(ngModel)] = "catagorytype">
+                    <option value="select">--Select--</option>
+                    <option value = "ordinal">Ordinal</option>
+                    <option value = "titalcase">Tittle only case</option>
+                    <option value = "cleanword">Clean word</option>
+                    <option value = "camelcase">Camel case</option>
+                    <option value= "revwords">Reverse words</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <br>
+     <div class="row" [ngSwitch] = "catagorytype">
+     <div class="col-sm-3"></div>
+     <div class="col-sm-6">
+         <div class="row">
+             <div class="col-sm-12" *ngSwitchCase = "'ordinal'">
+                 <div class="row">
+                    <div class="form-group">
+                        <label>Ordinal:</label> 
+                        <input type="text" class="form-control" [(ngModel)] = "ordinal">
+                    </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <span>{{ordinal|ordinal}}</span>
+                        </div>
+                    </div>
+                </div>
+             </div>
+             <div class="col-sm-12" *ngSwitchCase = "'titalcase'">
+                 <div class="row">
+                    <div class="form-group">
+                        <label>Tittle only case:</label> 
+                        <input type="text" class="form-control" [(ngModel)] = "titlecase">
+                    </div>
+                 </div>
+                 <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <span>{{titlecase|casetitle}}</span>
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+            <div class="col-sm-12" *ngSwitchCase = "'cleanword'">
+                <div class="row">
+                    <div class="form-group">
+                        <label>Clean word:</label> 
+                        <input type="text" class="form-control" [(ngModel)] = "cleanword">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <span>{{cleanword | maskingword}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-sm-12" *ngSwitchCase = "'camelcase'">
+                <div class="row">
+                    <div class="form-group">
+                        <label>Camel case:</label> 
+                        <input type="text" class="form-control" [(ngModel)] = "camelcase">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <span>{{camelcase | camelcase}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-sm-12" *ngSwitchCase = "'revwords'">
+                <div class="row">
+                    <div class="form-group">
+                        <label>Reverse words:</label> 
+                        <input type="text" class="form-control" [(ngModel)] = "reverseword" >
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group">
+                            <span>{{reverseword | mirror}}</span>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+         </div>
+     </div>
+     </div>
+
+    
+
+</div>
+
+
+

@@ -1,0 +1,34 @@
+
+<h1>3.Dynamic Content Load</h1>
+
+
+
+<div [ngSwitch] = "ViewMode">
+    <div class="container">
+        Select Page &nbsp; <select [(ngModel)] ="ViewMode">
+            <option value="Home">Home Page</option>
+            <option value = "About">About Us</option>
+            <option value = "Contact">Contact Us</option>
+            </select> 
+            <br><br>
+        <div *ngSwitchCase = "'Home'" class="property HomePage">
+          <div style="text-align: center;"><span><b><u>Home Page</u> </b></span></div> 
+            <br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+           </div>
+           
+           <div *ngSwitchCase = "'About'" class="property About" >
+            <div style="text-align: center;"><span><b><u>About Us</u> </b></span></div> 
+            <br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+           </div>
+         
+           <div div *ngSwitchCase = "'Contact'" class="property contact">
+            <div style="text-align: center;"><span><b><u>Contact Us</u> </b></span></div> 
+            <br>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book
+           </div>
+    </div>
+ 
+</div>
+<hr>
