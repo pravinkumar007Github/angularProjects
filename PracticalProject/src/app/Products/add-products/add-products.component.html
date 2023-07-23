@@ -1,0 +1,28 @@
+<div class="container">
+    <h1>Add Products using Express JS</h1>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Product Name</label>
+                <input type="text" class="form-control" #pdtname>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Product Amount</label>
+                <input type="text" class="form-control" #pdtamt>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Active</label>
+                <input type="checkbox" class="checkbox" #active>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="button" class="btn btn-primary" (click) = "addproducts(pdtname.value,pdtamt.value,active)" >Submit</button>
+        </div>
+    </div>
+</div>

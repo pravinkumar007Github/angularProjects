@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 text-center">
+           <h1>Add Users</h1> 
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Name </label>
+                <input type="text" class="form-control" #nme>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Mobile </label>
+                <input type="text" class="form-control" #mob>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Age </label>
+                <input type="text" class="form-control" #age>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="btn btn-primary" (click) = "saveData(nme.value,mob.value,age.value)">Submit</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="alert alert-success" role="alert">{{result}}</div>
+        </div>
+    </div>
+</div>

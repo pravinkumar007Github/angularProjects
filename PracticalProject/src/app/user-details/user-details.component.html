@@ -1,0 +1,12 @@
+<h1>1.Add User Page</h1><br>
+
+<span>User Name</span> &nbsp;<input type="text" [(ngModel)] = "User_Name" (keypress)= "enableButton()"><br><br>
+<button type="button" (click) = "createUser()" [disabled] = "!isDisable_create">Greet</button>&nbsp; 
+<button type="button" (click) = "clearValues()" [disabled] = "!isDisable_clear">Reset</button><br>
+<p *ngIf = "User_Name.length < 4">
+ Please Enter atleast 3 charcters of user name
+</p>
+
+<span>{{Msg}}</span>
+
+

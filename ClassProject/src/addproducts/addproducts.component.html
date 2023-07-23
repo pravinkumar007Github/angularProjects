@@ -1,0 +1,24 @@
+<h1>Add Products</h1><br><br>
+
+<span>Enter Product Name</span> &nbsp; <input type="text" id="productname" name="productname" #productname><br><br>
+<span>Enter Product Amount</span> &nbsp; <input type="text" id="productamount" name = "productamount" #productamount><br><br>
+<button type="button" (click) = "AddProdcts(productname.value,productamount.value)">Add Products</button><br>
+<span style="color: green;"></span><br><br>
+
+<h1>List of Products</h1><br>
+<table>
+    <thead>
+      <th>Product Name</th>
+      <th>Product Amount</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let productname of productArray; let index = index" >
+        <td>{{productname.ProductName}}</td>
+        <td>{{productname.ProductAmount}}</td>
+        
+      </tr>
+    </tbody>
+</table>
+
+
+

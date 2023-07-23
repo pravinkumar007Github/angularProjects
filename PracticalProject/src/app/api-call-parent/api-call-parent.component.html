@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>API Call Parent Container</h1>
+    <ul>
+        <ng-container *ngIf = "UserDetails.length > 0 else msg">
+            <div class="row" *ngFor = "let User of UserDetails; let index = index">
+                <div class="col-sm-2">
+                    <li>{{User.Name}}</li>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn-primary" (click) = "sendchilddata(index)">View Details</button> 
+                </div>
+        </div>
+        </ng-container>
+        <ng-template #msg>
+            <div class="row">
+                <div class="col-sm-2">
+                    <p class="alert alert-danger" role="alert">No Users</p>
+                </div>
+            </div>
+        </ng-template>
+    </ul>
+</div>
+<hr>
+<app-apicallchild *ngIf="isvisible" [childData] = "childUserDetails"></app-apicallchild>

@@ -1,0 +1,10 @@
+th
+{
+    background-color: rgb(66, 65, 64);
+    color: white;
+}
+
+.patent-table .table{ height: initial; overflow-x:hidden; font-size:14px;}
+
+
+.patent-table .table thead {position:sticky; top:0;}

@@ -1,0 +1,105 @@
+<div class="container">
+    <h1>User List</h1>
+    <div class="row">
+        <div class="col-sm-12">
+        </div>
+    </div>
+    <br>
+   <div class="row">
+   <div class="col-sm-12">
+       <div class="row">
+           <div class="col-sm-2">
+            <label>Search by Name</label>
+           </div>
+           <div class="col-sm-4">
+               <input class="form-control" type="text" #schnme>
+           </div>
+           <div class="col-sm-3">
+               <button type="button" class="btn btn-primary" (click)="filteruser(schnme.value)">Search</button>
+           </div>
+       </div>
+   </div>
+   </div>
+  <br>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 patent-table p-0">
+            <div class="w-74 m-auto">
+                <div class="table table1 tabel-responsive m-0">
+                    <table class="table table-bordered table-hover">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody >
+                        <ng-container *ngIf = "PassengerViewDetails.length > 0 else msg">
+                            <tr *ngFor="let passenger of PassengerViewDetails; let index = index">
+                                <td>{{index+1}}</td>
+                                <td>{{passenger.Name}}</td>
+                                <td>{{passenger.Mobile}}</td>
+                                <td>{{passenger.Age }}</td>
+                                <td><button type="button" value="{{passenger.Id}}" class="btn btn-success" (click)="BindUpdateData(index,passenger.Id)">Edit</button>&nbsp;&nbsp;
+                                 <button type="button" class="btn btn-danger" value="{{passenger.Id}})"(click)="deleteUsersdata(passenger.Id)" >Delete</button>
+                                </td>
+                            </tr>
+                        </ng-container>
+                        </tbody>
+                    </table>
+                   
+                </div>
+            </div>
+        </div>
+        <ng-template #msg>
+            <div class="alert alert-danger" role="alert"> No Records Found...!</div>
+            </ng-template>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="alert alert-success" role="alert">{{deleteresult}}</div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <h1>Update Users</h1>
+
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Name </label>
+                <input type="text" class="form-control" #editnme value="{{Name}}">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Mobile </label>
+                <input type="text" class="form-control" #editmob value="{{Mobile}}">
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="form-group">
+                <label>Age </label>
+                <input type="text" class="form-control" #editage value = "{{Age}}">
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <button type="button" class="btn btn-primary" (click) = "updatedata(editnme.value,editmob.value,editage.value)">Update</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center">
+            <div class="alert alert-success" role="alert">{{result}}</div>
+        </div>
+    </div>
+</div>

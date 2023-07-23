@@ -1,0 +1,165 @@
+<ng-container *ngIf = "ListView">
+    <div class="container">
+        <h1>Passengers List</h1>
+        <div class="row">
+            <div class="col-sm-12">
+            <button type="button" class="btn btn-primary" (click) = "AddViewEnable()">Add Passengers</button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 patent-table p-0">
+                <div class="w-74 m-auto">
+                    <div class="table table1 tabel-responsive m-0">
+                        <table class="table table-bordered table-hover">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th scope="col">S.No</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Mobile Number</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                            <ng-container *ngIf = "PassengerViewDetails.length > 0 else msg">
+                                <tr *ngFor="let passenger of PassengerViewDetails; let index = index">
+                                    <td>{{index+1}}</td>
+                                    <td>{{passenger.PassangerName}}</td>
+                                    <td>{{passenger.PassengerPhone}}</td>
+                                    <td>{{passenger.PassengerMail }}</td>
+                                </tr>
+                            </ng-container>
+                            </tbody>
+                        </table>
+                       
+                    </div>
+                </div>
+            </div>
+            <ng-template #msg>
+                <div class="alert alert-danger" role="alert"> No Records Found...!</div>
+                </ng-template>
+        </div>
+    </div>
+   
+</ng-container>
+
+<ng-container *ngIf = "CreateView">
+    <div class="container">
+        <h1>Passengers Creation</h1>
+        <form [formGroup] = "controlload" (submit) = "doSave()" >
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Enter Number of Users</label> &nbsp; <span>(Max 5 Users per Submission)</span>
+                        <input type="text" class="form-control" #Users  (keyup) = "loadcontrols(Users.value)">
+                      
+                       <p class="alert alert-danger" role="alert" *ngIf = "MaxUsersValid == 'Exist'">
+                           Maximum Five Users only allowed..!
+                       </p>
+                    </div>
+                </div>
+            </div>
+        
+                <ng-container *ngIf = "usernamectr.length>0">
+                <div *ngFor="let user of usernamectr; index as i;">
+                    <span><b>S.No: {{i+1}}</b></span>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div formArrayName="UsersName">
+                                <label>Passenger Name</label>
+                                <input type="text" class="form-control" [formControlName] = "i">
+                                <p class="alert alert-danger" role="alert" [formControlName] = "i" *ngIf = "usernamevalid[i].errors?.required && (usernamevalid[i].touched ||usernamevalid[i].dirty)">
+                                Please Enter User Name....!
+                                </p>
+                                </div>
+                            </div>
+                          
+                        </div>
+                 
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <div formArrayName="UsersEmail">
+                                    <label>Passenger Email</label>
+                                    <input type="text" class="form-control" [formControlName] = "i">
+                                    <p class="alert alert-danger" role="alert" [formControlName] = "i" *ngIf = "useremailvalid[i].errors?.required && (useremailvalid[i].touched ||useremailvalid[i].dirty)">
+                                        Please Enter Email ID....!
+                                    </p>
+                                    <p class="alert alert-danger" role="alert" [formControlName] = "i" *ngIf = "useremailvalid[i].errors?.email && (useremailvalid[i].touched ||useremailvalid[i].dirty)">
+                                        Please Enter Valid Email ID....!
+                                    </p>
+                                </div>
+                               
+                            </div>
+                     </div>
+                     <div class="col-sm-4">
+                         <div class="form-group">
+                            <div formArrayName="UsersMobile">
+                                <label>Passenger Mobile Number</label>
+                                <input type="text" class="form-control" [formControlName] = "i">
+                                <p class="alert alert-danger" role="alert" [formControlName] = "i" *ngIf = "userMobileValid[i].errors?.required && (userMobileValid[i].touched ||userMobileValid[i].dirty)">
+                                    Please Enter Mobile Number....!
+                                </p>
+    
+                                <p class="alert alert-danger" role="alert" [formControlName] = "i" *ngIf = "userMobileValid[i].errors?.mobileValid && (userMobileValid[i].touched ||userMobileValid[i].dirty)">
+                                    Please Enter Valid Mobile Number....!
+                                </p>
+                            </div>
+                           
+                         </div>
+                        
+                     </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-1">
+                        <button type="submit" class="btn btn-success" [disabled] = "controlload.invalid">Submit</button>
+                       
+                    </div>
+                    <div class="col-sm-1">
+                        <button type="reset" class="btn btn-danger" (click) = "clearvalues()">Clear</button>
+                    </div>
+                </div>
+            </ng-container>
+        </form>
+        
+      <ng-container *ngIf = "PassengerDetails.length > 0 && PassengerDetails[0].UsersName">
+       <div class="row">
+           <h1>Preview Details</h1>
+           <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 patent-table p-0">
+                <div class="w-74 m-auto">
+                    <div class="table table1 tabel-responsive m-0">
+                        <table class="table table-bordered table-hover">
+                            <thead class="bg-dark text-white">
+                                <tr>
+                                    <th scope="col">S.No</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Mobile Number</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                             <tr *ngFor="let passenger of PassengerDetails; let index = index">
+                                 <td>{{index+1}}</td>
+                                 <td>{{passenger.UsersName}}</td>
+                                 <td>{{passenger.UsersEmail}}</td>
+                                 <td>{{passenger.UsersMobile }}</td>
+                             </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-sm-5"></div>
+           <div class="col-sm-4">
+               <button type="button" class="btn btn-success" (click) = "SaveData()">Save</button>
+           </div>
+       </div>
+      </ng-container>
+    </div>
+</ng-container>
+

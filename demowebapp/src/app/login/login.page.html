@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-item>
+ 
+  <ion-input placeholder="User Name" #username></ion-input>
+</ion-item>
+<ion-item *ngIf="valid">
+  <ion-label class="ion-text-wrap">
+    <ion-text color="danger">
+    Enter User Name
+    </ion-text>
+  </ion-label>
+</ion-item>
+<br>
+<ion-item>
+  
+  <ion-input placeholder="Password" type="Password" #password></ion-input>
+</ion-item>
+<ion-item *ngIf="passvalid">
+  <ion-label class="ion-text-wrap">
+    <ion-text color="danger">
+    Enter Password
+    </ion-text>
+  </ion-label>
+</ion-item>
+<ion-button color="primary" (click)="login(username.value,password.value)">Login</ion-button>
+</ion-content>
