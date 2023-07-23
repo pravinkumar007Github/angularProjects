@@ -1,0 +1,39 @@
+<div class="form" (submit) = "onFormSubmit(f)">
+    <h2>Create an account</h2>
+    <span>{{msg}}</span>
+    <form #f = "ngForm">
+      <input type="text" name="Username" ngModel #username = "ngModel" required placeholder="Username">
+      <p class="alert alert-danger" role="alert" *ngIf = "username.errors?.required && ( username.touched || username.dirty)" >
+        Please enter user name....!  
+      </p>
+      <input type="password" name="Password" ngModel #password = "ngModel" required  placeholder="Password">
+      <p class="alert alert-danger" role="alert" *ngIf = "password.errors?.required && ( password.touched || password.dirty)" >
+        Please enter password....!  
+      </p>
+      <p class="alert alert-danger" role="alert" *ngIf = " (password.touched) &&  (password.value.length < 3)">
+        please enter atleast 4 characters of password.....!
+      </p>
+
+      <input type="email" name="Email" ngModel #mail = "ngModel"  required email placeholder="Email Address" >
+      <p class="alert alert-danger" role="alert" *ngIf = "mail.errors?.required && ( mail.touched || mail.dirty)" >
+        Please enter Email ID....!  
+      </p>
+      <p class="alert alert-danger" role="alert" *ngIf = "mail.touched && mail.errors?.email">
+        please enter valid email.....!
+      </p>
+      <input type="text" name="Phone" ngModel #phone = "ngModel" required pattern="^(0|[1-9][0-9]*)$" placeholder="Phone Number">
+      <p class="alert alert-danger" role="alert" *ngIf = "phone.errors?.required && ( phone.touched || phone.dirty)" >
+        Please enter Mobile Number....!  
+      </p>
+
+      <p class="alert alert-danger" role="alert" *ngIf = "phone.errors?.pattern">
+        please enter Number.....!
+      </p>
+      <p class="alert alert-danger" role="alert" *ngIf = " (phone.touched) &&  (phone.value.length < 10 || phone.value.length > 10)">
+        please enter valid Number.....!
+      </p>
+
+      <!-- <input type="submit" value="Register" disabled = "f.invalid"> -->
+      <button type="submit" class="btn btn-success" [disabled] = "f.invalid">Register</button>
+    </form>
+  </div>

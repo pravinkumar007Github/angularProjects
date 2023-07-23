@@ -1,0 +1,33 @@
+<div class="w3l_banner_nav_right">
+    <!-- login -->
+            <div class="w3_login">
+                <h3>Sign In & Sign Up</h3>
+                <h2>{{msg}}</h2>
+                <div class="w3_login_module">
+                    <div class="module form-module">
+                      <div class="toggle"><i class="fa fa-times fa-pencil"></i>
+                        <div class="tooltip">Click Me</div>
+                      </div>
+                      <div class="form">
+                        <h2>Login to your account</h2>
+                        <form [formGroup]="loginform" (submit)="doLogin()">
+                          <input type="text" name="Username" formControlName = "Username" placeholder="Username">
+                          <p class="alert alert-danger" role="alert"  *ngIf = "userctrl.errors?.required && (userctrl.touched ||userctrl.dirty)">
+                            Please Enter User Name....!
+                            </p>
+                          <input type="password" name="Password" formControlName = "Password" placeholder="Password" >
+                          <p class="alert alert-danger" role="alert"  *ngIf = "passctrl.errors?.required && (passctrl.touched ||passctrl.dirty)">
+                            Please Enter Password.....!
+                            </p>
+                          <!-- <input type="submit" value="Login"> -->
+                          <button type="submit" class="btn btn-success" [disabled] = "loginform.invalid">Login</button>
+                        </form>
+                      </div>
+                      <app-signup></app-signup>
+                      <div class="cta"><a href="#">Forgot your password?</a></div>
+                    </div>
+                </div>
+             
+            </div>
+    <!-- //login -->
+            </div>

@@ -1,0 +1,67 @@
+<div class="w3l_banner_nav_right">
+    <div class="w3_login">
+        <h3>Add Products</h3>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Select Category</label>
+                    <select class="form-control" #ddl_cat_type>
+                        <option value="select">--Select--</option>
+                        <ng-container *ngFor="let Cat_List of pdtServ.category_list">
+                            <option value="{{Cat_List._id}}">{{Cat_List.Category_Name}}</option>
+                        </ng-container>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <input type="text" class="form-control" #pdtName>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Product Amount</label>
+                    <input type="number" class="form-control" #pdtAmt>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Upload Product Image</label>
+                    <input type="file" id="pdt_img" class="form-control" (change)= "imgUpload($event)">
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label>Product Description</label>
+                    <textarea class="form-control" rows="8" #pdtDesc></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-3"></div>
+            <div class="col-sm-6" style="text-align: center;">
+                <button type="button" class="btn btn-success" style="width: 500px;" (click)="addproducts(ddl_cat_type.value,pdtName.value,pdtAmt.value,pdtDesc.value)"><strong>Save</strong></button>
+            </div>
+        </div>
+    </div>
+</div>
