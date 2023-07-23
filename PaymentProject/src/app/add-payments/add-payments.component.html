@@ -1,0 +1,110 @@
+
+
+
+<div class="container">
+    <h2>Add Payment</h2>
+    <form #f="ngForm" (submit) = "onFormSubmit(f)">
+        <div class = "row">
+            <div class = "col-sm-3">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" class="form-control" name="usrname" ngModel #usrname = "ngModel" required >
+                    <p class="alert alert-danger" role="alert" *ngIf = "usrname.errors?.required && ( usrname.touched || usrname.dirty)" >
+                        Please enter user name....!  
+                      </p>
+                </div>
+            </div>
+    
+           
+            <div class = "col-sm-3">
+                <div class="form-group">
+                    <label>Price</label>
+                    <input type="text" class="form-control" name="prodprice" ngModel #price = "ngModel" required pattern="^(0|[1-9][0-9]*)$" >
+                    <p class="alert alert-danger" role="alert" *ngIf = "price.errors?.required &&(price.touched || price.dirty)">
+                      Please enter product price......!
+                    </p>
+                    <p class="alert alert-danger" role="alert" *ngIf = "price.errors?.pattern">
+                      please enter valid amount.....!
+                    </p>
+                </div>
+            </div>
+            <div class = "col-sm-3">
+                <div class="form-group">
+                    <label>Card Number</label>
+                    <input type="text" class="form-control" name="caednum" ngModel #cardnum = "ngModel" maxlength="19" (keyup) = "loadcard(cardnum.value)" [(ngModel)]="cardnumber_valid" required pattern="[0-9\-]+">
+                    <p class="alert alert-danger" role="alert" *ngIf = "cardnum.errors?.required &&(cardnum.touched || cardnum.dirty)">
+                        Please enter card number......!
+                      </p>
+                      <p class="alert alert-danger" role="alert" *ngIf = "cardnum.errors?.pattern">
+                        please enter valid card number.....!
+                      </p>
+                </div>
+            </div>
+            <div [ngSwitch] = "cardtype">
+                <div class="col-sm-3" *ngSwitchCase = "'master'" >
+                    <div class="form-group">
+                        <img src="../../assets/img/mastercard.jpg" class="img-thumbnail">
+                    </div>
+                </div>
+                <div class="col-sm-3" *ngSwitchCase = "'visa'" >
+                    <div class="form-group">
+                        <img src="../../assets/img/visa.jpg" class="img-thumbnail">
+                    </div>
+                </div>
+            </div>
+         
+        </div>
+        <div class="row">
+           
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-primary" [disabled] = "f.invalid">Add Payment</button>
+                &nbsp;<button type="reset" class="btn btn-danger" (click) = "f.reset()" (click) = "cardtype=''">Clear</button>
+            </div>
+        </div>
+    </form>
+
+<br><br>
+<div class="row">
+    <div class="col-sm-12">
+        <div [ngSwitch] = "ststusmessage">
+            <div *ngSwitchCase = "'Added'" class="alert alert-success" role="alert">
+              Payment Added Successfully....!
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click) = "ststusmessage='None'">
+                 <span aria-hidden="true">&times;</span>
+               </button>
+            </div> 
+         </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="row">
+           <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                <label>Search Type</label>
+                <select [(ngModel)] = "ddlload" class="form-control" #ddlValue>
+                    <option value="Name">Name</option>
+                    <option value="Price">Price</option>
+                    <option value="ccno">Card Number</option>
+                </select>
+                </div>
+
+               
+              
+            </div>
+            <div class="col-sm-4">
+                <div class="form-group">
+                    <label>Search</label>
+                    <input type="text" class="form-control" #SeachWord (keyup) ="searchfilter(ddlValue.value,SeachWord.value)">
+                    </div>
+            </div>
+          
+        </div>
+    </div>
+    </div>
+
+</div>
+
+<hr>
+<app-list-payments [searchType] = "searchtype" [searchData] = "searchdata"></app-list-payments>

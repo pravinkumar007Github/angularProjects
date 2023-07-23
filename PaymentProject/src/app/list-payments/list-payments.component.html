@@ -1,0 +1,149 @@
+
+<div [ngSwitch] = "ViewMode">
+  
+
+    <div class="container" *ngSwitchCase = "'visisble'">
+   
+        <h2>Edit Payment</h2>
+        <form>
+            <div class = "row">
+                <div class = "col-sm-4">
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" name="usrname" #name value="{{Name}}">
+                    </div>
+                </div>
+                <div class = "col-sm-4">
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="text" class="form-control" name = "prodprice" #price value="{{Price}}">
+                    </div>
+                </div>
+                <div class = "col-sm-4">
+                    <div class="form-group">
+                        <label>Card Number</label>
+                        <input type="text" class="form-control" name = "cardnum" #cardnum value="{{CardNumber}}">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+               
+                <div class="col-sm-4">
+                    <button type="button" class="btn btn-primary" (click) = "editPayment(name.value,price.value,cardnum.value)" (click) = "ViewMode='None'" >Update Payment</button>
+                    &nbsp;<button type="button" class="btn btn-danger" (click)="name.value=''" (click)="price.value=''" (click)= "cardnum.value=''">Clear</button>
+                    <!-- <button type="button" class="btn btn-primary" (click) = "editPayment(name.value,price.value,cardnum.value)">Add Payment</button> -->
+                </div>
+            </div>
+        </form>
+    
+        <hr>
+        </div>
+        
+</div>
+
+
+
+<div class="container">
+ 
+    <h2>List Payments Details</h2>
+    
+  
+  
+    <br>
+    <div [ngSwitch] = "ststusmessage">
+       <div *ngSwitchCase = "'Updated'" class="alert alert-success" role="alert">
+         Payment Updated Successfully....!
+         <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click) = "ststusmessage='None'">
+            <span aria-hidden="true">&times;</span>
+          </button>
+       </div> 
+       <div *ngSwitchCase = "'Deleted'" class="alert alert-success" role="alert">
+        Payment Deleted Successfully....!
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close" (click) = "ststusmessage='None'">
+           <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row">
+        <div class="col-sm-12" style="text-align: center;">
+            <div class="alert alert-info" role="alert">
+                <strong>  Total Number of Records : {{listPayment.PaymentList | filtercount:searchtype:searchdata}}</strong>
+              </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 patent-table p-0">
+            <div class="w-74 m-auto">
+                <div class="table table1 tabel-responsive m-0">
+                    <table class="table table-bordered table-hover">
+                        <thead class="bg-dark text-white">
+                            <tr>
+                                <th scope="col">S.No</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Card Number</th>
+                                <th scope="col">Operations</th>
+    
+                            </tr>
+                        </thead>
+                        <tbody >
+                          
+                         <tr *ngFor="let productname of paymentList |filter:searchtype:searchdata; let index = index">
+                             
+                             <td>{{index+1}}</td>
+                             <td>{{productname.Name}}</td>
+                             <td>{{productname.Price | currency:'INR'}}</td>
+                             <td>{{productname.CardNumber | cardformat}}</td>
+                             <td><button type="button" class="btn-success" (click)="enableEdit(productname.Name,productname.Price,productname.CardNumber,index)">Edit</button>&nbsp;<button type="button" class="btn-danger" (click)="confirmdelete(index)" data-toggle="modal" data-target="#DeletePopup"> Delete </button></td>
+                         </tr>
+                      
+                       
+                        </tbody>
+
+                    </table>
+                    <div [ngSwitch] = "listPayment.tempval">
+                        <div class="alert alert-danger" role="alert" *ngSwitchCase = "'recordempty'">
+                            <p class="text-center">No Records Found</p>
+                          </div>
+                    </div>
+
+                    
+                   
+                    
+                </div>
+            </div>
+         
+        </div>
+    </div>
+
+    
+
+
+
+
+    <div class="modal fade" id="DeletePopup" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" >Payment Delete Confirmation</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+             Do you want delete this payment?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+              <button type="button" class="btn btn-primary" data-dismiss="modal" (click)= "deletePayment()">Yes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+</div>
+
+
